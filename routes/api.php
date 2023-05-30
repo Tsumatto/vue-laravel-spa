@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/tasks', 'App\Http\Controllers\TaskController@index');
 Route::post('/tasks', 'App\Http\Controllers\TaskController@store');
 Route::get('/tasks/{task}', 'App\Http\Controllers\TaskController@show');
+Route::put('/tasks/{task}', 'App\Http\Controllers\TaskController@update');
