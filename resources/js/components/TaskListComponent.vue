@@ -1,7 +1,7 @@
 <template>
-    <div className="container">
-        <table className="table table-hover">
-            <thead className="thead-light">
+    <div class="container">
+        <table class="table table-hover">
+            <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
@@ -20,16 +20,16 @@
                 <td>{{ task.person_in_charge }}</td>
                 <td>
                     <router-link v-bind:to="{name: 'task.show', params: {taskId: task.id }}">
-                        <button className="btn btn-primary">Show</button>
+                        <button class="btn btn-primary">Show</button>
                     </router-link>
                 </td>
                 <td>
                     <router-link v-bind:to="{name: 'task.edit', params: {taskId: task.id }}">
-                        <button className="btn btn-success">Edit</button>
+                        <button class="btn btn-success">Edit</button>
                     </router-link>
                 </td>
                 <td>
-                    <button className="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger" v-on:click="deleteTask(task.id)">Delete</button>
                 </td>
             </tr>
             </tbody>
@@ -49,6 +49,12 @@ export default {
             axios.get('/api/tasks')
                 .then((res) => {
                     this.tasks = res.data;
+                });
+        },
+        deleteTask(id) {
+            axios.delete('/api/tasks/' + id)
+                .then((res) => {
+                    this.getTasks();
                 });
         }
     },
